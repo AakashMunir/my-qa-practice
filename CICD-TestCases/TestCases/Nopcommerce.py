@@ -6,9 +6,8 @@ from playwright.sync_api import Page
 def test_nopcommerce_login(page: Page):
     page.goto("https://demo.nopcommerce.com/login?returnUrl=%2F")
     time.sleep(15)
-    page.get_by_role("textbox", name="Email:").fill("mailk@mailk.com")
-    page.get_by_role("textbox", name="Email:").press("Tab")
-    page.get_by_role("textbox", name="Password:").fill("Malik0313")
-    page.get_by_role("button", name="Log in").click()
+    page.locator('//*[@id="Email"]').fill("mailk@mailk.com")
+    page.locator('//*[@id="Password"]').fill("Malik0313")
+    page.locator('//*[@id="main"]/div/section/div/div[2]/div[1]/div[2]/form/div[2]/button').click()
     time.sleep(8)
 
