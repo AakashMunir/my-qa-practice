@@ -16,6 +16,7 @@ def run(playwright: Playwright) -> None:
     page.get_by_role("button", name="Login with LDAP").click()
     time.sleep(8)
     # ---------------------
+    # Add ne line
     context.close()
     browser.close()
 
