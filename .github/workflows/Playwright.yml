@@ -24,7 +24,7 @@ jobs:
           playwright install chromium
 
       - name: Tests chalao
-        run: pytest CICD-TestCases/TestCases/Nopcommerce.py --screenshot=on
+        run: pytest CICD-TestCases/TestCases/Nopcommerce.py --headless --screenshot=on
 
       - name: Screenshots aur report save karo
         uses: actions/upload-artifact@v4
