@@ -15,7 +15,12 @@ def run(playwright: Playwright) -> None:
     page.get_by_role("textbox", name="Password").fill("@qwerty#123")
     page.get_by_role("button", name="Login with LDAP").click()
     time.sleep(8)
+<<<<<<< HEAD
     # ----------------------
+=======
+    # ---------------------
+    # Add ne line
+>>>>>>> 60aeb7933b8d9d2aca07cca10ac63fbfa1bbea10
     context.close()
     browser.close()
 
