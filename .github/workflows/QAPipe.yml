@@ -2,7 +2,7 @@ name: Professional QA Pipeline
 
 on:
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main]
 
 jobs:
     ui-tests:                         # Step 2 — API pass hone ke baad
