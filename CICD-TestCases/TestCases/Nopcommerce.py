@@ -9,11 +9,13 @@ def run(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
     page = context.new_page()
-    page.goto("http://10.166.1.88/#login")
-    page.get_by_role("textbox", name="Email address or Username").click()
-    page.get_by_role("textbox", name="Email address or Username").fill("013076")
-    page.get_by_role("textbox", name="Password").fill("@qwerty#123")
-    page.get_by_role("button", name="Login with LDAP").click()
+    page.goto("https://demo.nopcommerce.com/login?returnUrl=%2F")
+    page.get_by_role("textbox", name="Email:").fill("mailk@mailk.com")
+    page.get_by_role("textbox", name="Email:").press("Tab")
+    page.get_by_role("textbox", name="Password:").fill("Malik0313")
+    page.get_by_role("button", name="Log in").click()
+    time.sleep(8)
+    page.get_by_role("heading", name="demo.nopcommerce.com").click()
     time.sleep(8)
     # ---------------------
     # Add ne line
