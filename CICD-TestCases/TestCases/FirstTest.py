@@ -12,7 +12,6 @@ def run(playwright: Playwright) -> None:
     page.goto("http://10.166.1.88/#login")
     page.get_by_role("textbox", name="Email address or Username").click()
     page.get_by_role("textbox", name="Email address or Username").fill("013076")
-    page.get_by_role("textbox", name="Password").click()
     page.get_by_role("textbox", name="Password").fill("@qwerty#123")
     page.get_by_role("button", name="Login with LDAP").click()
     time.sleep(8)
