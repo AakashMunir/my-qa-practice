@@ -13,4 +13,4 @@ def test_nopcommerce_login(page: Page):
     # page.locator('//*[@id="Password"]').fill("Malik0313")
     # page.locator('//*[@id="main"]/div/section/div/div[2]/div[1]/div[2]/form/div[2]/button').click()
     time.sleep(8)
-
+#
