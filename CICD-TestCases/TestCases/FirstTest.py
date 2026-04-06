@@ -6,7 +6,7 @@ from playwright.sync_api import Playwright, sync_playwright, expect
 
 
 def run(playwright: Playwright) -> None:
-    browser = playwright.chromium.launch(headless=False)
+    browser = playwright.chromium.launch(headless=Ture)
     context = browser.new_context()
     page = context.new_page()
     page.goto("http://10.166.1.88/#login")
