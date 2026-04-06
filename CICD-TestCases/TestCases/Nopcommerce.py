@@ -16,9 +16,5 @@ def test_nopcommerce_login(page: Page):
         page.locator("#password").fill("Malik0313")
     with allure.step("Click login button"):
         page.get_by_role("button", name="Login").click()
-    # time.sleep(8)
-    # page.locator("//body/div[5]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/input[1]").fill("Aakash")
-    # page.locator('//*[@id="Password"]').fill("Malik0313")
-    # page.locator('//*[@id="main"]/div/section/div/div[2]/div[1]/div[2]/form/div[2]/button').click()
     time.sleep(8)
 #
