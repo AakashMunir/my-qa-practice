@@ -1,36 +1,60 @@
-name: Playwright QA Tests
+name: Playwright Tests
 
 on:
   push:
-    branches: 
-      - main
-      - feature
+    branches: [ main, feature ]
+  
 
 jobs:
-  playwright-tests:
+  test:
+    timeout-minutes: 60
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Python setup
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Playwright install karo
+      - name: Install dependencies
         run: |
-          pip install playwright pytest-playwright
-          playwright install chromium
+          python -m pip install --upgrade pip
+          pip install playwright pytest-playwright allure-pytest   # ✅ allure-pytest add kiya
 
-      - name: Tests chalao
-        run: pytest CICD-TestCases/TestCases/FirstTest.py --screenshot=on
+      - name: Ensure browsers are installed
+        run: python -m playwright install --with-deps
 
-      - name: Screenshots aur report save karo
+      - name: Run tests
+        run: pytest CICD-TestCases/TestCases/Nopcommerce.py --tracing=retain-on-failure --alluredir=allure-results   # ✅ allure folder
+
+      - name: Set up Java (Allure ke liye zaroori)
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Install Allure CLI
+        run: |
+          curl -o allure.tgz -L https://github.com/allure-framework/allure2/releases/download/2.27.0/allure-2.27.0.tgz
+          tar -zxvf allure.tgz
+          sudo mv allure-2.27.0 /opt/allure
+          sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
+
+      - name: Generate Allure Report
+        run: allure generate allure-results --clean -o allure-report   # ✅ HTML report banta hai
+
+      - name: Upload Allure Report
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: playwright-results
-          path: |
-            screenshots/
-            test-results/
+          name: allure-report
+          path: allure-report/                                         # ✅ report upload
+
+      - name: Upload Traces (as before)
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-traces
+          path: test-results/
